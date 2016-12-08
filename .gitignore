@@ -1,0 +1,67 @@
+#include"datos.h"
+int fila = 0;
+int colum = 0;
+int sumTotal=0;
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  while(Serial.available()>0){
+  char dato=Serial.read();
+  switch(dato) {
+    case '1':
+    Suma();
+    break; 
+    case '2':
+    Multi();
+    break; 
+   
+  };
+  dato=' ';
+  }
+}
+void Suma(){
+  for(; fila<20; fila++){
+  int suma = 0;
+    for(; colum<3; colum++){
+      suma = suma + matriz[fila][colum];
+    }
+  Serial.print("Suma Fila");
+  Serial.print(fila);
+  Serial.print(":");
+  Serial.println(suma);
+}
+Serial.print(" ");
+}
+void Multi(){
+  Serial.println(" ");
+  for(; colum<3; colum++){
+    float A=10;
+    float multipli=1;
+  for(; fila<20; fila++){
+    Serial.print("R");
+    Serial.print(":");
+    Serial.print("Fila");
+    Serial.print(fila);
+    Serial.print("=");
+    Serial.print(multipli,3);
+    Serial.print(" * ");
+    Serial.print(matriz[fila][colum]/A);
+    multipli = (multipli)*(matriz[fila][colum]/A);
+    Serial.print(" = ");
+    Serial.println(multipli,6);
+  }
+    Serial.println(" ");
+    Serial.print("Multiplicacion Columna");
+    Serial.print(colum);
+    Serial.println(":");
+    Serial.print("Respuesta");
+    Serial.print("=");
+    Serial.print(multipli,6);
+    Serial.println("*10^20");
+    Serial.print(" ");
+  }
+}
